@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Générateur de Script Assistance</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #eef2f7;
+        margin: 0;
+        padding: 0;
+    }
+
+    .wrapper {
+        max-width: 650px;
+        margin: 40px auto;
+        background: #ffffff;
+        padding: 25px 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 25px;
+        color: #1b4f72;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    label {
+        font-weight: 600;
+        margin-top: 12px;
+        display: block;
+        color: #1f2d3d;
+    }
+
+    input, textarea, select {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border-radius: 6px;
+        border: 1px solid #cbd5e1;
+        background: #f9fbfc;
+        font-size: 15px;
+        box-sizing: border-box;
+    }
+
+    textarea {
+        resize: vertical;
+        min-height: 80px;
+    }
+
+    button {
+        margin-top: 18px;
+        width: 100%;
+        padding: 12px;
+        background: #1b4f72;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 17px;
+        cursor: pointer;
+        font-weight: 600;
+    }
+
+    button:hover {
+        background: #163f5a;
+    }
+
+    .copy-btn {
+        background: #1e8449;
+        margin-top: 10px;
+    }
+
+    .copy-btn:hover {
+        background: #145a32;
+    }
+
+    #output {
+        height: 170px;
+        margin-top: 12px;
+        background: #f4f6f9;
+    }
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+    <h1>Générateur de Script Assistance</h1>
+
+    <label>Localisation précise :</label>
+    <textarea id="loc"></textarea>
+
+    <label>Date d’entrée dans le pays :</label>
+    <input type="date" id="entree">
+
+    <label>Le client parle la langue locale ?</label>
+    <select id="langue">
+        <option value="">—</option>
+        <option>Oui</option>
+        <option>Non</option>
+    </select>
+
+    <label>Nombre de passagers :</label>
+    <input type="number" id="passagers" min="0">
+
+    <label>Destination finale :</label>
+    <input type="text" id="destination">
+
+    <label>Date prévue de retour en France :</label>
+    <input type="date" id="retour">
+
+    <button onclick="generateScript()">Générer le script</button>
+
+    <textarea id="output" readonly placeholder="Le script apparaîtra ici..."></textarea>
+
+    <button class="copy-btn" onclick="copyScript()">Copier le script</button>
+</div>
+
+<script>
+function generateScript() {
+    let loc = document.getElementById('loc').value.trim();
+    let entree = document.getElementById('entree').value;
+    let langue = document.getElementById('langue').value;
+    let passagers = document.getElementById('passagers').value;
+    let dest = document.getElementById('destination').value.trim();
+    let retour = document.getElementById('retour').value;
+
+    let script =
+`📍 Localisation : ${loc}
+📅 Entrée dans le pays : ${entree}
+🗣️ Parle la langue locale : ${langue}
+👥 Passagers : ${passagers}
+🎯 Destination finale : ${dest}
+🏁 Retour prévu en France : ${retour}`;
+
+    document.getElementById('output').value = script;
+}
+
+function copyScript() {
+    let txt = document.getElementById('output');
+    txt.select();
+    txt.setSelectionRange(0, 99999); 
+    document.execCommand('copy');
+    alert("✅ Script copié !");
+}
+</script>
+
+</body>
+</html>
+``
