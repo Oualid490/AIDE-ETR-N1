@@ -133,7 +133,6 @@ button {
 
 <body>
 
-<!-- HEADER -->
 <div class="header">
   <img src="ICONE ETR.png" alt="ETR">
   <div>
@@ -141,6 +140,7 @@ button {
     <p>Outil d’aide à l’ouverture de dossier étranger – Niveau 1</p>
   </div>
 </div>
+``
 
 <div class="wrapper">
 
