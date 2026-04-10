@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>AIDE ETR N1 – Ouverture dossier étranger</title>
+<p style="color:red;">VERSION UX 2026‑04‑TEST</p>
 
 <style>
 body {
@@ -140,7 +141,6 @@ button {
     <p>Outil d’aide à l’ouverture de dossier étranger – Niveau 1</p>
   </div>
 </div>
-``
 
 <div class="wrapper">
 
