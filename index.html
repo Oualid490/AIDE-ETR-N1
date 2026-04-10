@@ -2,18 +2,60 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>Test AIDE ETR N1</title>
+<title>AIDE ETR N1 – Générateur</title>
+
+<style>
+body { font-family: Arial, sans-serif; background:#eef2f7; }
+.wrapper { max-width:700px; margin:40px auto; background:#fff; padding:25px; border-radius:10px; }
+label { display:block; font-weight:600; margin-top:15px; }
+input, textarea { width:100%; padding:8px; margin-top:5px; }
+button { margin-top:20px; padding:12px; width:100%; font-size:16px; cursor:pointer; }
+#output { height:180px; margin-top:15px; }
+</style>
 </head>
 
 <body>
 
-<h1>AIDE ETR N1 – TEST</h1>
+<div class="wrapper">
+  <h2>AIDE ETR N1</h2>
 
-<button id="btn">Tester le bouton</button>
+  <label>Date entrée pays</label>
+  <input type="date" id="dateEntree">
+
+  <label>Langues parlées</label>
+  <input type="text" id="langues">
+
+  <label>Destination</label>
+  <input type="text" id="destination">
+
+  <label>Localisation précise</label>
+  <textarea id="localisation"></textarea>
+
+  <label>Évènement</label>
+  <textarea id="evenement"></textarea>
+
+  <button id="btnGenerate">Générer le script</button>
+
+  <textarea id="output" readonly></textarea>
+</div>
 
 <script>
-document.getElementById("btn").addEventListener("click", function () {
-    document.body.insertAdjacentHTML("beforeend", "<p>✅ Le JavaScript fonctionne</p>");
+document.addEventListener("DOMContentLoaded", function () {
+
+  const btn = document.getElementById("btnGenerate");
+
+  btn.addEventListener("click", function () {
+
+    const script =
+`📅 Entrée pays : ${document.getElementById("dateEntree").value}
+🗣 Langues : ${document.getElementById("langues").value}
+🎯 Destination : ${document.getElementById("destination").value}
+📍 Localisation : ${document.getElementById("localisation").value}
+💥 Évènement : ${document.getElementById("evenement").value}`;
+
+    document.getElementById("output").value = script;
+  });
+
 });
 </script>
 
