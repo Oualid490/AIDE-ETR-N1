@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <title>AIDE ETR N1 – Ouverture dossier étranger</title>
-<p style="color:red;">VERSION UX 2026‑04‑TEST</p>
 
 <style>
 body {
@@ -12,7 +11,7 @@ body {
   margin:0;
 }
 
-/* HEADER */
+/* ===== HEADER ===== */
 .header {
   background:#0b4ea2;
   color:#fff;
@@ -33,12 +32,12 @@ body {
 }
 
 .header p {
-  margin:5px 0 0;
+  margin:4px 0 0;
   font-size:14px;
   opacity:0.95;
 }
 
-/* CONTAINER */
+/* ===== MAIN ===== */
 .wrapper {
   max-width: 820px;
   margin: 30px auto;
@@ -108,12 +107,9 @@ button {
 .actions {
   display:flex;
   gap:10px;
-  margin-top:15px;
 }
 
-.actions button {
-  flex:1;
-}
+.actions button { flex:1; }
 
 #output {
   height:180px;
@@ -126,14 +122,13 @@ button {
   padding-left:0;
 }
 
-.checklist li {
-  margin:6px 0;
-}
+.checklist li { margin:6px 0; }
 </style>
 </head>
 
 <body>
 
+<!-- HEADER -->
 <div class="header">
   <img src="ICONE ETR.png" alt="ETR">
   <div>
@@ -145,10 +140,9 @@ button {
 <div class="wrapper">
 
 <div class="note">
-<b>⚠️ Enjeu d’un dossier étranger</b><br>
-Un dossier ETR mal ouvert en N1 est souvent à l’origine de retards, surcoûts et insatisfactions client.<br>
-L’objectif de cet outil est de <b>collecter dès le premier contact toutes les informations utiles</b>
-pour sécuriser la prise en charge à l’étranger.
+<b>⚠️ Enjeu d’un dossier à l’étranger</b><br>
+Une ouverture incomplète en N1 est souvent à l’origine de retards, de surcoûts et d’insatisfaction client.<br>
+Cet outil vise à <b>sécuriser dès le premier contact la collecte des informations essentielles</b>.
 </div>
 
 <h2>1. Contexte client</h2>
@@ -164,7 +158,7 @@ pour sécuriser la prise en charge à l’étranger.
 <div class="help">À cocher si la panne est récente même si le séjour est long</div>
 
 <label>Langues parlées</label>
-<div class="help">Utile pour la coordination avec les prestataires étrangers</div>
+<div class="help">Utile pour la coordination avec les prestataires</div>
 <input type="text" id="langues">
 
 <label>Destination finale</label>
@@ -172,7 +166,7 @@ pour sécuriser la prise en charge à l’étranger.
 <input type="text" id="destination">
 
 <label>Détail précis de l’évènement</label>
-<div class="help">Décrire précisément la panne ou la situation</div>
+<div class="help">Décrire clairement la panne ou la situation</div>
 <textarea id="evenement"></textarea>
 
 <label>Second numéro de téléphone</label>
@@ -206,12 +200,12 @@ pour sécuriser la prise en charge à l’étranger.
 
 <label>Spécificités du véhicule</label>
 <div class="help">
-À remplir uniquement si le véhicule nécessite un traitement particulier :
-camping-car, utilitaire, remorque, gabarit, équipements spécifiques…
+À renseigner uniquement si le véhicule nécessite un traitement particulier
+(camping-car, utilitaire, remorque, gabarit, équipements spécifiques…)
 </div>
 <textarea id="specVehicule"></textarea>
 
-<h2>4. Script</h2>
+<h2>4. Script (version compacte)</h2>
 
 <button id="btnGenerate">Générer le script</button>
 <textarea id="output" readonly></textarea>
@@ -270,21 +264,12 @@ const script =
 `📅 Entrée pays : ${dateEntree.value}
 🗣 Langues : ${langues.value}
 🎯 Destination : ${destination.value}
-
-💥 Évènement :
-${evenement.value}
-
-📍 Localisation :
-${pays.value} – ${localisation.value}
+💥 Évènement : ${evenement.value}
+📍 Localisation : ${pays.value} – ${localisation.value}
 ${autoroute.checked ? `Autoroute ${numAutoroute.value}, PK ${pk.value}, ${direction.value}` : ""}
-
-🚐 Spécificités véhicule :
-${specVehicule.value}
-
+🚐 Spécificités véhicule : ${specVehicule.value}
 📞 Second numéro : ${numero2.value}
-
-📝 Infos complémentaires :
-${notes.value}`;
+📝 Infos complémentaires : ${notes.value}`;
 
 output.value = script;
 updateChecklist();
