@@ -9,36 +9,57 @@ body {
   font-family: Arial, sans-serif;
   background:#eef2f7;
   margin:0;
-  padding:0;
 }
 
+/* HEADER */
+.header {
+  background:#0b4ea2;
+  color:#fff;
+  padding:20px;
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+
+.header img {
+  width:70px;
+  height:auto;
+}
+
+.header h1 {
+  margin:0;
+  font-size:26px;
+}
+
+.header p {
+  margin:5px 0 0;
+  font-size:14px;
+  opacity:0.95;
+}
+
+/* CONTAINER */
 .wrapper {
   max-width: 820px;
-  margin: 40px auto;
+  margin: 30px auto;
   background:#fff;
   padding:30px;
   border-radius:12px;
   box-shadow:0 4px 12px rgba(0,0,0,.15);
 }
 
-h1 {
-  text-align:center;
-  color:#154360;
-  margin-bottom:5px;
-}
-
-.subtitle {
-  text-align:center;
-  color:#566573;
+.note {
+  background:#f0f6ff;
+  border-left:5px solid #0b4ea2;
+  padding:15px;
   font-size:14px;
   margin-bottom:25px;
 }
 
 h2 {
   font-size:18px;
-  margin-top:25px;
-  color:#1b4f72;
-  border-left:5px solid #1b4f72;
+  margin-top:30px;
+  color:#0b4ea2;
+  border-left:4px solid #0b4ea2;
   padding-left:10px;
 }
 
@@ -64,14 +85,6 @@ input, textarea {
 
 textarea { min-height:60px; }
 
-button {
-  margin-top:20px;
-  padding:12px;
-  width:100%;
-  font-size:16px;
-  cursor:pointer;
-}
-
 .status {
   margin-top:10px;
   padding:10px;
@@ -83,32 +96,59 @@ button {
 .orange { background:#fdebd0; color:#af601a; }
 .red { background:#f5b7b1; color:#922b21; }
 
+button {
+  margin-top:20px;
+  padding:12px;
+  width:100%;
+  font-size:16px;
+  cursor:pointer;
+}
+
+.actions {
+  display:flex;
+  gap:10px;
+  margin-top:15px;
+}
+
+.actions button {
+  flex:1;
+}
+
 #output {
-  height:220px;
+  height:180px;
   margin-top:15px;
   white-space:pre-line;
 }
 
 .checklist {
-  margin-top:15px;
-  padding-left:0;
   list-style:none;
+  padding-left:0;
 }
 
 .checklist li {
-  margin:5px 0;
+  margin:6px 0;
 }
 </style>
 </head>
 
 <body>
 
+<!-- HEADER -->
+<div class="header">
+  <img src="ICONE ETR.png" alt="ETR">
+  <div>
+    <h1>AIDE ETR N1</h1>
+    <p>Outil d’aide à l’ouverture de dossier étranger – Niveau 1</p>
+  </div>
+</div>
+
 <div class="wrapper">
 
-<h1>AIDE ETR N1</h1>
-<div class="subtitle">
-Outil d’aide à l’ouverture de dossier étranger – N1<br>
-Objectif : ouverture complète dès le premier contact
+<div class="note">
+<b>⚠️ Enjeu d’un dossier étranger</b><br>
+Un dossier ETR mal ouvert en N1 est souvent à l’origine de retards, surcoûts et insatisfactions client.<br>
+L’objectif de cet outil est de <b>collecter dès le premier contact toutes les informations utiles</b>
+pour sécuriser la prise en charge à l’étranger.
 </div>
 
 <h2>1. Contexte client</h2>
@@ -119,81 +159,67 @@ Objectif : ouverture complète dès le premier contact
 <div id="joursInfo" class="status"></div>
 
 <label>
-<input type="checkbox" id="panneRecente">
- Panne récente (&lt; 30 jours)
+<input type="checkbox" id="panneRecente"> Panne récente (&lt; 30 jours)
 </label>
 <div class="help">À cocher si la panne est récente même si le séjour est long</div>
 
 <label>Langues parlées</label>
-<div class="help">Ex : Français / Anglais – utile pour prestataires</div>
+<div class="help">Utile pour la coordination avec les prestataires étrangers</div>
 <input type="text" id="langues">
 
 <label>Destination finale</label>
-<div class="help">Ville, hôtel, famille, lieu de séjour</div>
+<div class="help">Ville, hôtel, famille, lieu de séjour prévu</div>
 <input type="text" id="destination">
 
 <label>Détail précis de l’évènement</label>
-<div class="help">Ce qu’il s’est passé exactement</div>
+<div class="help">Décrire précisément la panne ou la situation</div>
 <textarea id="evenement"></textarea>
 
 <label>Second numéro de téléphone</label>
 <div class="help">Numéro local ou autre contact joignable</div>
 <input type="text" id="numero2">
 
-<label>Détails importants (passagers, enfants, animaux, bagages…)</label>
-<div class="help">Toute information utile pour la suite du dossier</div>
+<label>Informations importantes</label>
+<div class="help">Passagers, enfants, animaux, bagages, contraintes particulières</div>
 <textarea id="notes"></textarea>
 
 <h2>2. Localisation</h2>
 
 <label>Pays</label>
-<div class="help">Pays où se trouve le client au moment de l’évènement</div>
 <input type="text" id="pays">
 
 <label>Localisation précise</label>
-<div class="help">Adresse exacte ou description. Si autoroute : PK + direction</div>
+<div class="help">Adresse exacte. Si autoroute : numéro, PK et direction</div>
 <textarea id="localisation"></textarea>
 
 <label>
-<input type="checkbox" id="autoroute">
- Client sur autoroute
+<input type="checkbox" id="autoroute"> Client sur autoroute
 </label>
 
 <div id="zoneAutoroute" style="display:none;">
-  <label>Autoroute</label>
-  <input type="text" id="numAutoroute">
-
-  <label>PK</label>
-  <input type="text" id="pk">
-
-  <label>Direction</label>
-  <input type="text" id="direction">
+  <label>Autoroute</label><input type="text" id="numAutoroute">
+  <label>PK</label><input type="text" id="pk">
+  <label>Direction</label><input type="text" id="direction">
 </div>
 
-<h2>3. Véhicule</h2>
+<h2>3. Véhicule – uniquement si nécessaire</h2>
 
-<label>Type de véhicule</label>
-<div class="help">VL, utilitaire, camping-car, moto, location…</div>
-<input type="text" id="vehicule">
-
-<label>
-<input type="checkbox" id="grosVehicule">
- Gros véhicule ou spécificités
-</label>
-
-<div id="zoneSpecVehicule" style="display:none;">
-  <label>Spécificités du véhicule</label>
-  <div class="help">Gabarit, poids, équipements, remorque…</div>
-  <textarea id="specVehicule"></textarea>
+<label>Spécificités du véhicule</label>
+<div class="help">
+À remplir uniquement si le véhicule nécessite un traitement particulier :
+camping-car, utilitaire, remorque, gabarit, équipements spécifiques…
 </div>
+<textarea id="specVehicule"></textarea>
 
-<h2>4. Génération du script</h2>
+<h2>4. Script</h2>
 
 <button id="btnGenerate">Générer le script</button>
 <textarea id="output" readonly></textarea>
 
-<button id="btnCopy">Copier le script</button>
-<button id="btnReset">Réinitialiser</button>
+<div class="actions">
+  <button id="btnCopy">Copier</button>
+  <button id="btnReset">Réinitialiser</button>
+</div>
 
 <h2>5. Checklist N1</h2>
 <ul class="checklist" id="checklist"></ul>
@@ -213,7 +239,6 @@ function updateDays() {
     joursInfo.className = "status";
     return;
   }
-
   const start = new Date(dateEntree.value);
   const now = new Date();
   const days = Math.floor((now - start) / (1000*60*60*24));
@@ -225,13 +250,10 @@ function updateDays() {
     joursInfo.className = "status orange";
     joursInfo.textContent = `Séjour : ${days} jours – vigilance`;
   } else {
-    if (panneRecente.checked) {
-      joursInfo.className = "status orange";
-      joursInfo.textContent = `Séjour : ${days} jours – panne récente`;
-    } else {
-      joursInfo.className = "status red";
-      joursInfo.textContent = `Séjour : ${days} jours – hors conditions`;
-    }
+    joursInfo.className = panneRecente.checked ? "status orange" : "status red";
+    joursInfo.textContent = panneRecente.checked
+      ? `Séjour : ${days} jours – panne récente`
+      : `Séjour : ${days} jours – hors conditions`;
   }
 }
 
@@ -242,14 +264,10 @@ document.getElementById("autoroute").addEventListener("change", e => {
   document.getElementById("zoneAutoroute").style.display = e.target.checked ? "block" : "none";
 });
 
-document.getElementById("grosVehicule").addEventListener("change", e => {
-  document.getElementById("zoneSpecVehicule").style.display = e.target.checked ? "block" : "none";
-});
-
 document.getElementById("btnGenerate").addEventListener("click", function () {
 
-  const script =
-`📅 Date entrée pays : ${dateEntree.value}
+const script =
+`📅 Entrée pays : ${dateEntree.value}
 🗣 Langues : ${langues.value}
 🎯 Destination : ${destination.value}
 
@@ -258,31 +276,29 @@ ${evenement.value}
 
 📍 Localisation :
 ${pays.value} – ${localisation.value}
+${autoroute.checked ? `Autoroute ${numAutoroute.value}, PK ${pk.value}, ${direction.value}` : ""}
 
-🚐 Véhicule : ${vehicule.value}
-${grosVehicule.checked ? "Spécificités : " + specVehicule.value : ""}
+🚐 Spécificités véhicule :
+${specVehicule.value}
 
 📞 Second numéro : ${numero2.value}
 
 📝 Infos complémentaires :
 ${notes.value}`;
 
-  output.value = script;
-
-  updateChecklist();
+output.value = script;
+updateChecklist();
 });
 
 document.getElementById("btnCopy").addEventListener("click", function () {
   navigator.clipboard.writeText(output.value)
-    .then(() => alert("✅ Script copié"))
-    .catch(() => alert("❌ Copie impossible"));
+    .then(() => alert("✅ Script copié"));
 });
 
 document.getElementById("btnReset").addEventListener("click", function () {
   document.querySelectorAll("input, textarea").forEach(el => el.value = "");
   document.querySelectorAll("input[type=checkbox]").forEach(el => el.checked = false);
   document.getElementById("zoneAutoroute").style.display = "none";
-  document.getElementById("zoneSpecVehicule").style.display = "none";
   joursInfo.textContent = "";
   joursInfo.className = "status";
   output.value = "";
@@ -296,10 +312,8 @@ function updateChecklist() {
     ["Localisation", localisation.value],
     ["Destination", destination.value],
     ["Évènement", evenement.value],
-    ["Véhicule", vehicule.value],
     ["Second numéro", numero2.value]
   ];
-
   items.forEach(i => {
     const li = document.createElement("li");
     li.textContent = (i[1] ? "✅ " : "❌ ") + i[0];
