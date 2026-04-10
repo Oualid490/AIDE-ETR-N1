@@ -2,139 +2,63 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>AIDE ETR N1 – Ouverture de dossier étranger</title>
+<title>AIDE ETR N1 – Générateur</title>
 
 <style>
-body {
-    font-family: Arial, sans-serif;
-    background: #eef2f7;
-    margin: 0;
-    padding: 0;
-}
-
-.wrapper {
-    max-width: 820px;
-    margin: 40px auto;
-    background: #ffffff;
-    padding: 30px;
-    border-radius: 14px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.18);
-}
-
-h1 {
-    text-align: center;
-    color: #154360;
-    font-size: 30px;
-    font-weight: 800;
-}
-
-.subtitle {
-    text-align: center;
-    color: #566573;
-    margin-bottom: 25px;
-}
-
-h2 {
-    font-size: 18px;
-    margin-top: 25px;
-    color: #1b4f72;
-    border-left: 5px solid #1b4f72;
-    padding-left: 10px;
-}
-
-label {
-    font-weight: 700;
-    margin-top: 15px;
-    display: block;
-}
-
-input, textarea {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-}
-
-textarea {
-    min-height: 60px;
-}
-
-button {
-    margin-top: 15px;
-    width: 100%;
-    padding: 12px;
-    background: #154360;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-.copy-btn { background: #1e8449; }
-.reset-btn { background: #a93226; }
-
-#output {
-    margin-top: 15px;
-    height: 180px;
-}
+body { font-family: Arial, sans-serif; background:#eef2f7; }
+.wrapper { max-width:700px; margin:40px auto; background:#fff; padding:25px; border-radius:10px; }
+label { display:block; font-weight:600; margin-top:15px; }
+input, textarea { width:100%; padding:8px; margin-top:5px; }
+button { margin-top:20px; padding:12px; width:100%; font-size:16px; cursor:pointer; }
+#output { height:180px; margin-top:15px; }
 </style>
 </head>
 
 <body>
 
 <div class="wrapper">
-<h1>AIDE ETR N1</h1>
-<div class="subtitle">Ouverture de dossier étranger – aide N1</div>
+  <h2>AIDE ETR N1</h2>
 
-<h2>Informations</h2>
+  <label>Date entrée pays</label>
+  <input type="date" id="dateEntree">
 
-<label>Date d’entrée dans le pays</label>
-<input type="date" id="dateEntree">
+  <label>Langues parlées</label>
+  <input type="text" id="langues">
 
-<label>Langues parlées</label>
-<input type="text" id="langues">
+  <label>Destination</label>
+  <input type="text" id="destination">
 
-<label>Destination finale</label>
-<input type="text" id="destination">
+  <label>Localisation précise</label>
+  <textarea id="localisation"></textarea>
 
-<label>Détail de la panne</label>
-<textarea id="evenement"></textarea>
+  <label>Évènement</label>
+  <textarea id="evenement"></textarea>
 
-<label>Localisation précise</label>
-<textarea id="localisation"></textarea>
+  <button id="btnGenerate">Générer le script</button>
 
-<h2>Script</h2>
-
-<button onclick="generateScript()">Générer le script</button>
-
-<textarea id="output" readonly></textarea>
-
-<button class="copy-btn" onclick="copyScript()">Copier</button>
-<button class="reset-btn" onclick="resetForm()">Réinitialiser</button>
+  <textarea id="output" readonly></textarea>
 </div>
 
 <script>
-function generateScript() {
+document.addEventListener("DOMContentLoaded", function () {
+
+  const btn = document.getElementById("btnGenerate");
+
+  btn.addEventListener("click", function () {
+
     const script =
 `📅 Entrée pays : ${document.getElementById("dateEntree").value}
 🗣 Langues : ${document.getElementById("langues").value}
 🎯 Destination : ${document.getElementById("destination").value}
-💥 Panne : ${document.getElementById("evenement").value}
-📍 Localisation : ${document.getElementById("localisation").value}`;
+📍 Localisation : ${document.getElementById("localisation").value}
+💥 Évènement : ${document.getElementById("evenement").value}`;
 
     document.getElementById("output").value = script;
-}
+  });
 
-function copyScript() {
-    navigator.clipboard.writeText(
-        document.getElementById("output").value
-    ).then(() => alert("✅ Script copié"));
-}
-
-function resetForm() {
-    document.querySelectorAll("input, textarea").forEach(e => e.value = "");
-}
+});
 </script>
 
 </body>
 </html>
+``
