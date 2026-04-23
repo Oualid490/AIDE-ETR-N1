@@ -1,241 +1,316 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>AIDE‑ETR‑N1</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>AIDE ETR N1 – Ouverture dossier étranger</title>
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f6f7f9;
-      margin: 0;
-      padding: 20px;
-    }
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background:#eef2f7;
+  margin:0;
+}
 
-    h1 {
-      text-align: center;
-      color: #2c3e50;
-    }
+/* HEADER */
+.header {
+  background:#0b4ea2;
+  color:#fff;
+  padding:20px;
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
 
-    h2 {
-      color: #1f4ea8;
-      margin-top: 0;
-    }
+.header img {
+  width:70px;
+  height:auto;
+}
 
-    h3 {
-      margin-top: 15px;
-      font-size: 14px;
-      color: #444;
-    }
+.header h1 {
+  margin:0;
+  font-size:26px;
+}
 
-    .bloc {
-      background: #ffffff;
-      border: 1px solid #ddd;
-      padding: 15px;
-      margin-bottom: 20px;
-      border-radius: 8px;
-    }
+.header p {
+  margin:4px 0 0;
+  font-size:14px;
+  opacity:0.95;
+}
 
-    label {
-      display: block;
-      margin-top: 10px;
-      font-weight: bold;
-    }
+/* CONTAINER */
+.wrapper {
+  max-width: 820px;
+  margin: 30px auto;
+  background:#fff;
+  padding:30px;
+  border-radius:12px;
+  box-shadow:0 4px 12px rgba(0,0,0,.15);
+}
 
-    input, textarea {
-      width: 100%;
-      padding: 6px;
-      margin-top: 4px;
-      box-sizing: border-box;
-    }
+.note {
+  background:#f0f6ff;
+  border-left:5px solid #0b4ea2;
+  padding:15px;
+  font-size:14px;
+  margin-bottom:25px;
+}
 
-    textarea {
-      min-height: 60px;
-    }
+h2 {
+  font-size:18px;
+  margin-top:30px;
+  color:#0b4ea2;
+  border-left:4px solid #0b4ea2;
+  padding-left:10px;
+}
 
-    .checklist li {
-      list-style: none;
-      margin-bottom: 6px;
-    }
+label {
+  font-weight:600;
+  display:block;
+  margin-top:15px;
+}
 
-    .info {
-      font-size: 13px;
-      color: #555;
-      margin-top: 5px;
-    }
-  </style>
+.help {
+  font-size:12px;
+  font-style:italic;
+  color:#5f6a6a;
+  margin-top:3px;
+}
+
+input, textarea {
+  width:100%;
+  padding:8px;
+  margin-top:5px;
+  box-sizing:border-box;
+}
+
+textarea { min-height:60px; }
+
+.status {
+  margin-top:10px;
+  padding:10px;
+  border-radius:6px;
+  font-weight:bold;
+}
+
+.green { background:#d4efdf; color:#145a32; }
+.orange { background:#fdebd0; color:#af601a; }
+.red { background:#f5b7b1; color:#922b21; }
+
+button {
+  margin-top:20px;
+  padding:12px;
+  width:100%;
+  font-size:16px;
+  cursor:pointer;
+}
+
+.actions {
+  display:flex;
+  gap:10px;
+}
+
+.actions button { flex:1; }
+
+#output {
+  height:170px;
+  margin-top:15px;
+  white-space:pre-line;
+}
+
+.checklist {
+  list-style:none;
+  padding-left:0;
+}
+
+.checklist li {
+  margin:6px 0;
+}
+</style>
 </head>
 
 <body>
 
-<h1>🧭 AIDE‑ETR‑N1  
-<br><small>Ouverture d’un dossier Étranger – Niveau 1</small></h1>
+<div class="header">
+  <img src="ICONE ETR.png" alt="ETR">
+  <div>
+    <h1>AIDE ETR N1</h1>
+    <p>Ouverture de dossier étranger – Niveau 1</p>
+  </div>
+</div>
 
-<!-- IDENTIFICATION -->
-<section class="bloc">
-  <h2>👤 Identification bénéficiaire</h2>
+<div class="wrapper">
 
-  <label>Nom / Prénom</label>
-  <input type="text">
+<div class="note">
+<b>⚠️ Enjeu d’un dossier à l’étranger</b><br>
+Une ouverture incomplète en N1 est souvent à l’origine de retards, de surcoûts et d’insatisfaction client.<br>
+L’objectif est de collecter dès le premier contact toutes les informations utiles à la prise en charge.
+</div>
 
-  <label>N° contrat ou immatriculation</label>
-  <input type="text">
+<h2>1. Contexte client</h2>
 
-  <label>Pays de souscription</label>
-  <input type="text">
+<label>Date d’entrée dans le pays</label>
+<div class="help">Date d’arrivée effective du client dans le pays étranger</div>
+<input type="date" id="dateEntree">
+<div id="joursInfo" class="status"></div>
 
-  <label>Numéro de contact principal</label>
-  <input type="tel">
+<label>Langues parlées</label>
+<div class="help">Utile pour la coordination avec les prestataires</div>
+<input type="text" id="langues">
 
-  <h3>ℹ️ Informations importantes</h3>
-  <ul class="info">
-    <li>Client facilement joignable</li>
-    <li>Moyen de contact privilégié (appel / WhatsApp / SMS)</li>
-    <li>Contraintes particulières (horaires, stress, urgence…)</li>
-  </ul>
-</section>
+<label>Destination finale</label>
+<div class="help">Ville, hôtel, famille, lieu de séjour prévu</div>
+<input type="text" id="destination">
 
-<!-- LOCALISATION -->
-<section class="bloc">
-  <h2>📍 Situation & localisation</h2>
+<label>Nombre de personnes à bord lors de l’évènement</label>
+<div class="help">Conducteur inclus – préciser adultes / enfants si nécessaire</div>
+<input type="number" id="nbPersonnes" min="1">
 
-  <label>Pays</label>
-  <input type="text">
+<label>Détail précis de l’évènement</label>
+<div class="help">Décrire clairement la panne ou la situation</div>
+<textarea id="evenement"></textarea>
 
-  <label>Ville</label>
-  <input type="text">
+<label>Informations importantes</label>
+<div class="help">
+Passagers (enfants, animaux), bagages, contraintes particulières, contact alternatif si besoin
+</div>
+<textarea id="notes"></textarea>
 
-  <label>Adresse précise / Point GPS</label>
-  <textarea></textarea>
+<h2>2. Localisation</h2>
 
-  <label>Lieu sécurisé</label>
-  <input type="checkbox"> Oui
+<label>Pays</label>
+<input type="text" id="pays">
 
-  <label>Véhicule roulant</label>
-  <input type="checkbox"> Oui
+<label>Localisation précise</label>
+<div class="help">Adresse exacte. Si autoroute : numéro, PK et direction</div>
+<textarea id="localisation"></textarea>
 
-  <p class="info">⚠️ Penser au décalage horaire</p>
-</section>
+<label>
+<input type="checkbox" id="autoroute"> Client sur autoroute
+</label>
 
-<!-- VEHICULE -->
-<section class="bloc">
-  <h2>🚗 Véhicule</h2>
+<div id="zoneAutoroute" style="display:none;">
+  <label>Autoroute</label><input type="text" id="numAutoroute">
+  <label>PK</label><input type="text" id="pk">
+  <label>Direction</label><input type="text" id="direction">
+</div>
 
-  <label>Marque / Modèle</label>
-  <input type="text">
+<h2>3. Véhicule – uniquement si nécessaire</h2>
 
-  <label>Immatriculation</label>
-  <input type="text">
+<label>Spécificités du véhicule</label>
+<div class="help">
+À renseigner uniquement si le véhicule nécessite un traitement particulier
+(camping-car, utilitaire, remorque, gabarit, équipements spécifiques…)
+</div>
+<textarea id="specVehicule"></textarea>
 
-  <label>Année / motorisation (si connue)</label>
-  <input type="text">
+<h2>4. Script (version compacte)</h2>
 
-  <label>Véhicule accessible au dépanneur</label>
-  <input type="checkbox"> Oui
-</section>
+<button id="btnGenerate">Générer le script</button>
+<textarea id="output" readonly></textarea>
 
-<!-- EVENEMENT -->
-<section class="bloc">
-  <h2>⚠️ Évènement</h2>
+<div class="actions">
+  <button id="btnCopy">Copier</button>
+  <button id="btnReset">Réinitialiser</button>
+</div>
 
-  <label>Type d’évènement</label>
-  <ul class="checklist">
-    <li><input type="checkbox"> Panne</li>
-    <li><input type="checkbox"> Accident</li>
-    <li><input type="checkbox"> Crevaison</li>
-    <li><input type="checkbox"> Autre</li>
-  </ul>
+<h2>5. Checklist N1</h2>
+<ul class="checklist" id="checklist"></ul>
 
-  <label>Symptômes décrits par le client</label>
-  <textarea></textarea>
+</div>
 
-  <label>Véhicule déjà vu par un professionnel</label>
-  <input type="checkbox"> Oui
+<script>
+document.addEventListener("DOMContentLoaded", function () {
 
-  <label>Nombre de personnes à bord lors de l’évènement</label>
-  <input type="number" min="1">
-</section>
+const dateEntree = document.getElementById("dateEntree");
+const joursInfo = document.getElementById("joursInfo");
 
-<!-- PRESTATIONS -->
-<section class="bloc">
-  <h2>🧾 Prestations & contrat</h2>
+function updateDays() {
+  if (!dateEntree.value) {
+    joursInfo.textContent = "";
+    joursInfo.className = "status";
+    return;
+  }
+  const start = new Date(dateEntree.value);
+  const now = new Date();
+  const days = Math.floor((now - start) / (1000*60*60*24));
 
-  <p class="info">
-    Prestations disponibles selon les garanties contractuelles.<br>
-    Délais variables selon le pays et le réseau local.
-  </p>
+  if (days < 60) {
+    joursInfo.className = "status green";
+    joursInfo.textContent = `Séjour : ${days} jours`;
+  } else if (days <= 90) {
+    joursInfo.className = "status orange";
+    joursInfo.textContent = `Séjour : ${days} jours – vigilance`;
+  } else {
+    joursInfo.className = "status red";
+    joursInfo.textContent = `Séjour : ${days} jours – hors conditions`;
+  }
+}
 
-  <p class="info">
-    🗣️ <strong>Phrase type :</strong><br>
-    « Les délais et modalités peuvent varier selon le pays et les partenaires locaux. »
-  </p>
-</section>
+dateEntree.addEventListener("change", updateDays);
 
-<!-- FINANCIER -->
-<section class="bloc">
-  <h2>💰 Informations financières</h2>
+document.getElementById("autoroute").addEventListener("change", e => {
+  document.getElementById("zoneAutoroute").style.display = e.target.checked ? "block" : "none";
+});
 
-  <ul class="info">
-    <li>Avance de frais possible</li>
-    <li>Reste à charge potentiel</li>
-    <li>Moyen de paiement local en cas de dépassement</li>
-  </ul>
+document.getElementById("btnGenerate").addEventListener("click", function () {
 
-  <p class="info">⚠️ Toujours annoncer un reste à charge potentiel</p>
-</section>
+const script =
+`📅 Entrée pays : ${dateEntree.value}
+🗣 Langues : ${langues.value}
+🎯 Destination : ${destination.value}
+👥 Personnes à bord : ${nbPersonnes.value}
 
-<!-- LANGUE -->
-<section class="bloc">
-  <h2>🌍 Langue & communication</h2>
+💥 Évènement :
+${evenement.value}
 
-  <label>Langue parlée par le client</label>
-  <input type="text">
+📍 Localisation :
+${pays.value} – ${localisation.value}
+${autoroute.checked ? `Autoroute ${numAutoroute.value}, PK ${pk.value}, ${direction.value}` : ""}
 
-  <label>Langue locale</label>
-  <input type="text">
+🚐 Spécificités véhicule :
+${specVehicule.value}
 
-  <label>Besoin d’intermédiaire / traducteur</label>
-  <input type="checkbox"> Oui
+📝 Infos importantes :
+${notes.value}`;
 
-  <p class="info">📌 WhatsApp / SMS privilégiés à l’étranger</p>
-</section>
+output.value = script;
+updateChecklist();
+});
 
-<!-- ACTIONS -->
-<section class="bloc">
-  <h2>✅ Actions N1 obligatoires</h2>
+document.getElementById("btnCopy").addEventListener("click", function () {
+  navigator.clipboard.writeText(output.value)
+    .then(() => alert("✅ Script copié"));
+});
 
-  <ul class="checklist">
-    <li><input type="checkbox"> Dossier ETR créé</li>
-    <li><input type="checkbox"> Commentaires clairs et factuels</li>
-    <li><input type="checkbox"> Localisation complète</li>
-    <li><input type="checkbox"> Informations client vérifiées</li>
-    <li><input type="checkbox"> Résumé structuré de l’évènement</li>
-  </ul>
-</section>
+document.getElementById("btnReset").addEventListener("click", function () {
+  document.querySelectorAll("input, textarea").forEach(el => el.value = "");
+  document.querySelectorAll("input[type=checkbox]").forEach(el => el.checked = false);
+  document.getElementById("zoneAutoroute").style.display = "none";
+  joursInfo.textContent = "";
+  joursInfo.className = "status";
+  output.value = "";
+  checklist.innerHTML = "";
+});
 
-<!-- CHECKLIST FINALE -->
-<section class="bloc">
-  <h2>✅ Checklist finale N1</h2>
+function updateChecklist() {
+  checklist.innerHTML = "";
+  const items = [
+    ["Date entrée", dateEntree.value],
+    ["Localisation", localisation.value],
+    ["Destination", destination.value],
+    ["Évènement", evenement.value],
+    ["Personnes à bord", nbPersonnes.value],
+    ["Infos importantes", notes.value]
+  ];
+  items.forEach(i => {
+    const li = document.createElement("li");
+    li.textContent = (i[1] ? "✅ " : "❌ ") + i[0];
+    checklist.appendChild(li);
+  });
+}
 
-  <ul class="checklist">
-    <li><input type="checkbox"> Bénéficiaire identifié et joignable</li>
-    <li><input type="checkbox"> Localisation exacte confirmée</li>
-    <li><input type="checkbox"> Véhicule identifié</li>
-    <li><input type="checkbox"> Type d’évènement renseigné</li>
-    <li><input type="checkbox"> Nombre de personnes à bord indiqué</li>
-    <li><input type="checkbox"> Prestations expliquées</li>
-    <li><input type="checkbox"> Plafonds / reste à charge annoncés</li>
-    <li><input type="checkbox"> Langue et canal de contact adaptés</li>
-    <li><input type="checkbox"> Traces claires dans le dossier</li>
-    <li><input type="checkbox"> Escalade réalisée si nécessaire</li>
-  </ul>
-
-  <p class="info">
-    🧠 <strong>Règle d’or N1 – ETR :</strong><br>
-    Factuel – Pas de diagnostic – Pas de promesse – Traçabilité maximale
-  </p>
-</section>
+});
+</script>
 
 </body>
 </html>
